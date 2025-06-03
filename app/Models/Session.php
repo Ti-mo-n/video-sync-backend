@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,11 +12,21 @@ class Session extends Model
     protected $keyType = 'string';
     protected $casts = ['expires_at' => 'datetime'];
 
+    //fillable fields
+    protected $fillable = [
+        'id',
+        'expires_at',
+        'video_url',
+        'timestamp'
+    ];
+
     protected static function boot()
     {
         parent::boot();
         static::creating(function ($model) {
-            $model->id = (string) Str::uuid();
+            if (empty($model->id)) {
+                $model->id = (string) Str::uuid();
+            }
         });
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Session;
 use Illuminate\Http\Request;
 
 class SyncController extends Controller
